@@ -213,10 +213,10 @@ public class subsetOfArray {
 			int n = b.length;
 			
 			if (isSubset(a, b, m, n))
-			System.out.print("b[] is subset of a1[] ");
+			System.out.print("b[] is subset of a[] ");
 			else
 			System.out.print("b[] is not a subset of a[]");
 			}
 }
 
-Output b[] is subset of a1[]
+Output b[] is subset of a[]
