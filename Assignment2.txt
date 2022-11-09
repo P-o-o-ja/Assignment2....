@@ -1,0 +1,222 @@
+1. Program to find the duplicates present in an array.
+
+public class searchDuplicates {
+
+	public static void main(String[] args) {
+		int[] a= {15, 10, 11, 15, 12, 11};
+		
+			for(int i=0;i<a.length;i++)
+			{
+				for(int j=i+1;j<a.length;j++)
+				{
+				  if(a[i]==a[j])
+				  {
+					  System.out.println("The duplicate value is at index " +(i)+ " and " +(j)+" with the value " +(a[i]));
+				  }
+				}
+			}
+	}
+}
+
+Output: 
+The duplicate value is at index 0 and 3 with the value 15
+The duplicate value is at index 2 and 5 with the value 11
+ 
+
+2. Program to sort an array using Quick Sort Algorithm.
+import java.util.Arrays;
+
+public class quickSort {	
+	public static void main(String[] args) {
+		int []arr= {4, 6, 10, 5, 7};
+		sort(arr, 0, arr.length-1);
+		System.out.println(Arrays.toString(arr));
+	}
+	 static void sort(int[] nums, int low, int high) {
+		 if(low>=high) {
+			 return;
+		 }
+		 int s=low;
+		 int e=high;
+		 int m=s+(e-s)/2;
+		 int pivot=nums[m];
+		 
+		 while(s<=e) {
+			 while(nums[s]<pivot) {
+				 s++;
+			 }
+			 while(nums[e]>pivot) {
+				 e--;
+			 } 
+			 
+			 if(s<=e) {
+				 int temp=nums[s];
+				 nums[s]=nums[e];
+				 nums[e]=temp;
+				 s++;
+				 e--;				 
+			 }
+		 }
+		 sort(nums, low, e);
+		 sort(nums, s, high);
+	 }
+
+}
+
+Output: [4, 5, 6, 7, 10]
+
+3. Program to sort an array using Bubble Sort Algorithm.
+public class Bubblesort {
+
+	public static void main(String[] args) {
+		int[] a= {15, 10, 18, 1, 12, 11};
+		
+		for(int i=0;i<a.length;i++)
+		{
+			for(int j=1;j<a.length-i;j++)
+			{
+			  if(a[j]<a[j-1])
+			  {
+				  int tempVar=a[j];
+				  a[j]=a[j-1];
+				  a[j-1]=tempVar;
+			  }
+			}
+		}
+		for(int el:a)
+		{
+			System.out.print(el+" ");
+		}
+	}
+
+}
+
+Output: 1 10 11 12 15 18 
+
+
+4. Program to sort an array using Merge Sort Algorithm.
+
+import java.util.Arrays;
+
+public class MergeSort {
+	public static void main(String[] args) {
+		int[] a= {15, 5, 2, 10, 1, 11};
+		a=mergeSort(a);
+		System.out.println(Arrays.toString(a));
+	}
+    static int[] mergeSort(int[]a) {
+	if(a.length==1) {
+		return a;
+	}
+	
+	int mid=a.length/2;
+	
+	int[] left=mergeSort(Arrays.copyOfRange(a, 0, mid));
+	int[] right= mergeSort(Arrays.copyOfRange(a, mid, a.length));
+	return merge(left, right);
+    }
+	
+	public static int[] merge(int[] first, int[] second) {
+		int[] mix=new int[first.length+second.length];
+		
+		int i=0;
+		int j=0;
+		int k=0;
+		
+		while(i<first.length && j<second.length) {
+			if(first[i]<second[j]) {
+				mix[k]=first[i];
+				i++;
+			}else {
+				mix[k]=second[j];
+				j++;
+			}
+			k++;
+			}
+		while(i<first.length) {
+			mix[k]=first[i];
+			i++;
+			k++;
+			}
+		while(j<second.length) {
+			mix[k]=second[j];
+			j++;
+			k++;
+			}
+		return mix;
+		}
+}
+
+Output: [1, 2, 5, 10, 11, 15]
+
+5. Program to sort an array using Selection Sort Algorithm.
+
+import java.util.Arrays;
+
+public class SelectionSort {
+	
+public static void main(String[] args) {
+	int[]a= {12, 10, 16, 15, 25, 18};
+    selection(a);
+    System.out.println(Arrays.toString(a));
+}
+
+static void selection(int[] a) {
+	for(int i=0;i<a.length;i++) {
+		int last=a.length-i-1;
+		int maxIndex=getMaxIndex(a, 0, last);
+		
+		swap(a, maxIndex, last);
+		
+	}
+}
+ static void swap(int[] a, int first, int second) {
+	 int temp=a[first];
+	 a[first]=a[second];
+	 a[second]=temp;
+ }
+private static int getMaxIndex(int[] a, int start, int end) {
+	int max=start;
+	for(int i=start; i<=end;i++) {
+		if(a[max]<a[i]) {
+			max=i;
+		}
+	}
+	return max;
+}
+}
+
+Output: [10, 12, 15, 16, 18, 25]
+
+6. Program to check whether an array is a subset of another array.
+
+public class subsetOfArray {
+	
+	static boolean isSubset(int a[], int b[], int m,  int n) {
+				int i = 0;
+				int j = 0;
+				for (i = 0; i < n; i++) {
+				for (j = 0; j < m; j++)
+				if (b[i] == a[j])
+				    break;
+				if (j == m)
+				return false;
+				}	
+				return true;
+				}
+	public static void main(String args[])
+			{
+			int a[] = { 2, 4, 6, 8, 10 };
+			int b[] = { 2, 10 };
+			
+			int m = a.length;
+			int n = b.length;
+			
+			if (isSubset(a, b, m, n))
+			System.out.print("b[] is subset of a1[] ");
+			else
+			System.out.print("b[] is not a subset of a[]");
+			}
+}
+
+Output b[] is subset of a1[]
